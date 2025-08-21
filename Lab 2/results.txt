@@ -1,0 +1,359 @@
+NYC Yellow Taxi Trip Data Analysis
+==================================================
+Dataset loaded successfully!
+Dataset shape: (995, 19)
+
+Dataset Info:
+<class 'pandas.core.frame.DataFrame'>
+RangeIndex: 995 entries, 0 to 994
+Data columns (total 19 columns):
+ #   Column                 Non-Null Count  Dtype  
+---  ------                 --------------  -----  
+ 0   VendorID               995 non-null    int64  
+ 1   tpep_pickup_datetime   995 non-null    object 
+ 2   tpep_dropoff_datetime  995 non-null    object 
+ 3   passenger_count        995 non-null    float64
+ 4   trip_distance          995 non-null    float64
+ 5   RatecodeID             995 non-null    float64
+ 6   store_and_fwd_flag     995 non-null    object 
+ 7   PULocationID           995 non-null    int64  
+ 8   DOLocationID           995 non-null    int64  
+ 9   payment_type           995 non-null    int64  
+ 10  fare_amount            995 non-null    float64
+ 11  extra                  995 non-null    float64
+ 12  mta_tax                995 non-null    float64
+ 13  tip_amount             995 non-null    float64
+ 14  tolls_amount           995 non-null    float64
+ 15  improvement_surcharge  995 non-null    float64
+ 16  total_amount           995 non-null    float64
+ 17  congestion_surcharge   995 non-null    float64
+ 18  Airport_fee            995 non-null    float64
+dtypes: float64(12), int64(4), object(3)
+memory usage: 147.8+ KB
+None
+
+First 5 rows:
+   VendorID tpep_pickup_datetime tpep_dropoff_datetime  passenger_count  ...  improvement_surcharge  total_amount congestion_surcharge  Airport_fee
+0         2  2024-01-01 00:57:55   2024-01-01 01:17:43              1.0  ...                    1.0         22.70                  2.5          0.0
+1         1  2024-01-01 00:03:00   2024-01-01 00:09:36              1.0  ...                    1.0         18.75                  2.5          0.0
+2         1  2024-01-01 00:17:06   2024-01-01 00:35:01              1.0  ...                    1.0         31.30                  2.5          0.0
+3         1  2024-01-01 00:36:38   2024-01-01 00:44:56              1.0  ...                    1.0         17.00                  2.5          0.0
+4         1  2024-01-01 00:46:51   2024-01-01 00:52:57              1.0  ...                    1.0         16.10                  2.5          0.0
+
+[5 rows x 19 columns]
+
+==================================================
+DATA CLEANING AND PREPROCESSING
+==================================================
+Missing values per column:
+Series([], dtype: int64)
+
+Original dataset size: 995
+Cleaned dataset size: 990
+Rows removed: 5
+
+==================================================
+PART A: DESCRIPTIVE STATISTICS
+==================================================
+
+1. UNIVARIATE ANALYSIS
+------------------------------
+
+Descriptive Statistics for PASSENGER_COUNT:
+----------------------------------------
+Count               : 990
+Missing Values      : 0
+Mean                : 1.5848
+Median              : 1.0000
+Mode                : 1.0000
+Minimum             : 0.0000
+Maximum             : 6.0000
+Range               : 6.0000
+Standard Deviation  : 0.9130
+Variance            : 0.8335
+Skewness            : 1.6544
+Kurtosis            : 2.7802
+Q1 (25th percentile): 1.0000
+Q3 (75th percentile): 2.0000
+IQR                 : 1.0000
+
+Interpretation for passenger_count:
+- Distribution is positively skewed (right-tailed)
+- Data has heavier tails than normal distribution
+- Coefficient of variation: 57.61%
+
+Descriptive Statistics for TRIP_DISTANCE:
+----------------------------------------
+Count               : 990
+Missing Values      : 0
+Mean                : 2.8880
+Median              : 1.9600
+Mode                : 0.9000
+Minimum             : 0.0000
+Maximum             : 23.9000
+Range               : 23.9000
+Standard Deviation  : 3.1242
+Variance            : 9.7604
+Skewness            : 3.2997
+Kurtosis            : 14.0051
+Q1 (25th percentile): 1.1300
+Q3 (75th percentile): 3.3925
+IQR                 : 2.2625
+
+Interpretation for trip_distance:
+- Distribution is positively skewed (right-tailed)
+- Data has heavier tails than normal distribution
+- Coefficient of variation: 108.18%
+
+Descriptive Statistics for FARE_AMOUNT:
+----------------------------------------
+Count               : 990
+Missing Values      : 0
+Mean                : 18.5039
+Median              : 14.2000
+Mode                : 6.5000
+Minimum             : 0.0000
+Maximum             : 180.0000
+Range               : 180.0000
+Standard Deviation  : 14.5732
+Variance            : 212.3768
+Skewness            : 3.3894
+Kurtosis            : 22.1037
+Q1 (25th percentile): 9.3000
+Q3 (75th percentile): 22.6000
+IQR                 : 13.3000
+
+Interpretation for fare_amount:
+- Distribution is positively skewed (right-tailed)
+- Data has heavier tails than normal distribution
+- Coefficient of variation: 78.76%
+
+Descriptive Statistics for TOTAL_AMOUNT:
+----------------------------------------
+Count               : 990
+Missing Values      : 0
+Mean                : 27.1391
+Median              : 22.2000
+Mode                : 16.3200
+Minimum             : 0.0000
+Maximum             : 217.2000
+Range               : 217.2000
+Standard Deviation  : 17.6331
+Variance            : 310.9246
+Skewness            : 3.4426
+Kurtosis            : 21.6670
+Q1 (25th percentile): 16.3400
+Q3 (75th percentile): 31.8600
+IQR                 : 15.5200
+
+Interpretation for total_amount:
+- Distribution is positively skewed (right-tailed)
+- Data has heavier tails than normal distribution
+- Coefficient of variation: 64.97%
+
+Descriptive Statistics for TIP_AMOUNT:
+----------------------------------------
+Count               : 990
+Missing Values      : 0
+Mean                : 3.5007
+Median              : 3.0000
+Mode                : 0.0000
+Minimum             : 0.0000
+Maximum             : 80.0000
+Range               : 80.0000
+Standard Deviation  : 4.1988
+Variance            : 17.6296
+Skewness            : 7.3274
+Kurtosis            : 115.0041
+Q1 (25th percentile): 0.0850
+Q3 (75th percentile): 4.8200
+IQR                 : 4.7350
+
+Interpretation for tip_amount:
+- Distribution is positively skewed (right-tailed)
+- Data has heavier tails than normal distribution
+- Coefficient of variation: 119.94%
+
+Descriptive Statistics for EXTRA:
+----------------------------------------
+Count               : 990
+Missing Values      : 0
+Mean                : 1.7543
+Median              : 1.0000
+Mode                : 1.0000
+Minimum             : 0.0000
+Maximum             : 7.7500
+Range               : 7.7500
+Standard Deviation  : 1.2455
+Variance            : 1.5512
+Skewness            : 1.1974
+Kurtosis            : 0.7025
+Q1 (25th percentile): 1.0000
+Q3 (75th percentile): 3.5000
+IQR                 : 2.5000
+
+Interpretation for extra:
+- Distribution is positively skewed (right-tailed)
+- Data has heavier tails than normal distribution
+- Coefficient of variation: 71.00%
+
+
+2. VISUALIZATIONS
+------------------------------
+Saved visualization for passenger_count as passenger_count_analysis.png
+Saved visualization for trip_distance as trip_distance_analysis.png
+Saved visualization for fare_amount as fare_amount_analysis.png
+Saved visualization for total_amount as total_amount_analysis.png
+Saved visualization for tip_amount as tip_amount_analysis.png
+Saved visualization for extra as extra_analysis.png
+Saved categorical analysis as categorical_analysis.png
+
+==================================================
+PART B: INFERENTIAL STATISTICS
+==================================================
+
+1. CONFIDENCE INTERVALS (95%)
+----------------------------------------
+
+Trip Distance:
+  Mean: 2.8880
+  95% CI: [2.6932, 3.0829]
+  Interpretation: We are 95% confident that the true population mean
+  trip distance is between 2.6932 and 3.0829
+
+Fare Amount:
+  Mean: 18.5039
+  95% CI: [17.5950, 19.4128]
+  Interpretation: We are 95% confident that the true population mean
+  fare amount is between 17.5950 and 19.4128
+
+Tip Amount:
+  Mean: 3.5007
+  95% CI: [3.2389, 3.7626]
+  Interpretation: We are 95% confident that the true population mean
+  tip amount is between 3.2389 and 3.7626
+
+
+2. HYPOTHESIS TESTING
+----------------------------------------
+
+Test 1: One-sample t-test
+H0: Average tip amount = $2
+H1: Average tip amount ≠ $2
+Sample mean: $3.5007
+Test statistic: 11.2461
+P-value: 0.000000
+Alpha level: 0.05
+Result: REJECT the null hypothesis
+Conclusion: The average tip amount is significantly different from $2
+
+
+Test 2: Two-sample t-test
+H0: Mean fare amount is the same for different payment types
+H1: Mean fare amount differs between payment types
+Payment Type 1 mean: $18.4674 (n=788)
+Payment Type 2 mean: $18.6779 (n=195)
+Test statistic: -0.1808
+P-value: 0.856528
+Result: FAIL TO REJECT the null hypothesis
+Conclusion: No significant difference in fare amounts between payment types
+
+
+Test 3: Chi-square Test of Independence
+H0: Payment type and Rate Code ID are independent
+H1: Payment type and Rate Code ID are not independent
+
+Contingency Table:
+RatecodeID    1.0   2.0   4.0   5.0   99.0
+payment_type
+1              776     7     0     4     1
+2              190     2     1     2     0
+4                7     0     0     0     0
+
+Chi-square statistic: 5.1840
+Degrees of freedom: 8
+P-value: 0.737740
+Alpha level: 0.05
+Result: FAIL TO REJECT the null hypothesis
+Conclusion: No significant evidence that variables are dependent
+
+
+3. CORRELATION ANALYSIS
+----------------------------------------
+Pearson Correlations:
+
+Trip Distance vs Fare Amount:
+  Pearson correlation: 0.8315 (p-value: 0.000000)
+  Spearman correlation: 0.8837 (p-value: 0.000000)
+  Interpretation: strong positive linear relationship
+
+Fare Amount vs Tip Amount:
+  Pearson correlation: 0.4939 (p-value: 0.000000)
+  Spearman correlation: 0.4111 (p-value: 0.000000)
+  Interpretation: moderate positive linear relationship
+Saved correlation scatter plots as correlation_scatter_plots.png
+
+Correlation Matrix:
+                 passenger_count  trip_distance  fare_amount  total_amount  tip_amount   extra
+passenger_count           1.0000        -0.0623      -0.0334       -0.0352     -0.0262 -0.0293
+trip_distance            -0.0623         1.0000       0.8315        0.8305      0.4349  0.0109
+fare_amount              -0.0334         0.8315       1.0000        0.9738      0.4939 -0.0390
+total_amount             -0.0352         0.8305       0.9738        1.0000      0.6696 -0.0180
+tip_amount               -0.0262         0.4349       0.4939        0.6696      1.0000  0.0093
+extra                    -0.0293         0.0109      -0.0390       -0.0180      0.0093  1.0000
+Saved correlation heatmap as correlation_heatmap.png
+
+==================================================
+BONUS ANALYSIS
+==================================================
+Note: Bonus tasks require datetime parsing from pickup/dropoff times
+For demonstration with sample data:
+
+Payment Type Analysis:
+             fare_amount              trip_distance        tip_amount
+                    mean median count          mean median       mean median
+payment_type
+1                 18.467   14.2   788         2.900   2.00      4.398   3.56
+2                 18.678   14.9   195         2.819   1.88      0.000   0.00
+4                 17.771    8.6     7         3.424   1.10      0.000   0.00
+
+==================================================
+CONCLUSIONS AND INSIGHTS
+==================================================
+
+Key Findings from the Analysis:
+• Passenger Count shows significant skewness (1.65)
+• Passenger Count has high variability (CV = 57.6%)
+• Trip Distance shows significant skewness (3.30)
+• Trip Distance has high variability (CV = 108.2%)
+• Fare Amount shows significant skewness (3.39)
+• Fare Amount has high variability (CV = 78.8%)
+• Total Amount shows significant skewness (3.44)
+• Total Amount has high variability (CV = 65.0%)
+• Tip Amount shows significant skewness (7.33)
+• Tip Amount has high variability (CV = 119.9%)
+
+Statistical Test Results Summary:
+• Tip amount hypothesis test: No significant difference from $2
+• Payment type comparison: Significant difference found
+• Independence test: No significant dependence
+
+Recommendations for Further Analysis:
+• Investigate temporal patterns with full datetime data
+• Analyze geographical patterns using location IDs
+• Consider seasonal variations in trip patterns
+• Examine the relationship between trip distance and pricing
+• Study customer behavior patterns by payment type
+
+==================================================
+ANALYSIS COMPLETE
+==================================================
+
+All visualization images have been saved in the 'DS\Lab\Lab 2\visualization_images' folder:
+• Individual column analysis: passenger_count_analysis.png, trip_distance_analysis.png, fare_amount_analysis.png, total_amount_analysis.png, tip_amount_analysis.png, extra_analysis.png
+• Categorical analysis: categorical_analysis.png
+• Correlation heatmap: correlation_heatmap.png
+• Correlation scatter plots: correlation_scatter_plots.png
+
+Total images saved: 9
+==================================================
